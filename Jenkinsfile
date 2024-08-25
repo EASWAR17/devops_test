@@ -1,12 +1,21 @@
+
 pipeline {
     agent any
+
+    environment {
+        DEPLOY_SERVER = '127.0.0.1'
+        DEPLOY_PATH = 'C:\\inetpub\\wwwroot'
+    }
+     // triggers {
+     //     pollSCM('H/2 * * * *') // Polls every 5 minutes
+     // }
 
     stages {
         stage('Checkout') {
             steps {
                 checkout([$class: 'GitSCM',
                     branches: [[name: '*/main']],
-                    userRemoteConfigs: [[url: 'https://github.com/your-repo.git']]
+                    userRemoteConfigs: [[url: 'https://github.com/EASWAR17/devops_test.git']]
                 ])
             }
         }
@@ -38,10 +47,16 @@ pipeline {
             }
         }
 
+        
+
         stage('Deploy') {
             steps {
                 script {
-                    // Deployment steps
+                    // Remove the existing files
+                    bat "del /S /Q ${DEPLOY_PATH}\\*"
+                    
+                    // Copy the new files from the repository to the deployment folder
+                    bat "xcopy /E /I /Y ${env.WORKSPACE} ${DEPLOY_PATH}"
                 }
             }
         }
