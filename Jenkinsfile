@@ -24,7 +24,7 @@ pipeline {
             steps {
                 script {
                     // Define the scannerHome path explicitly
-                    def scannerHome = tool name: 'Sonarserver', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+                    def scannerHome = tool name: 'sonarserver', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
                     
                     // Run SonarQube analysis
                     withSonarQubeEnv('sonarquber') {
