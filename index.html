@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be̅hance</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="src/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin='anonymous'></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/jpg" href="src/img/icon.jpg">
+
+</head>
+
+<body>
+    <div id="loader" class="center" style="z-index: 10000;"></div>
+    <header class="header sticky-top">
+        <div class="container" style="border-bottom: 1px solid #c0c0c0;">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand logo" href="#">Be̅hance</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" style="font-weight: 500; margin-top: 10px;" id="navbarNav">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Explore
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Search & Explore</a>
+                                <a class="dropdown-item" href="#">Curated Galleries</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Best of Behance</a>
+                                <a class="dropdown-item" href="#">Graphic Design</a>
+                                <a class="dropdown-item" href="#">Illustration</a>
+                                <a class="dropdown-item" href="#">Photography</a>
+                                <a class="dropdown-item" href="#">UI/UX</a>
+                                <a class="dropdown-item" href="#">3D Art</a>
+                            </div>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="#">Assets</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Jobs</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Behance <span
+                                    class="pro-button">PRO</span></a></li>
+                        <!--<li class="nav-item"><a class="nav-link" href="#">Hire Freelancers</a></li>-->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Hire Freelancers
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#"><i class="fa fa-info-circle"></i> Hiring on
+                                    Behance</a>
+                                <a class="dropdown-item" href="#"><i class="fa fa-search"></i> Find Creatives</a>
+                                <a class="dropdown-item" href="#"><i class="fa fa-address-book-o"></i> My Freelance
+                                    Projects</a>
+                                <a class="dropdown-item" href="#"><i class="fa fa-plus-circle"></i> New Freelance
+                                    Project</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item small" href="#">Graphic Designers</a>
+                                <a class="dropdown-item small" href="#">Brand Designers</a>
+                                <a class="dropdown-item small" href="#">UI/UX Designers</a>
+                                <a class="dropdown-item small" href="#">Illustrators</a>
+                                <a class="dropdown-item small" href="#">Logo Desingers</a>
+                                
+                            </div>
+                        </li>
+                    </ul>
+
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fa fa-bell" aria-hidden="true"></i></a>
+                        </li>
+                        <li class="nav-item mx-2">
+                            <button class="btn btn-outline-primary my-2 my-sm-0 btn-custom-rounded font-weight-bold"
+                                type="button">Log In</button>
+                        </li>
+                        <span> </span>
+                        <li class="nav-item">
+                            <button class="btn btn-primary my-2 my-sm-0 btn-custom-rounded font-weight-bold"
+                                type="button">Sign Up</button>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link font-weight-bold" href="#"><img src="./src/img/adobelogo.png" width="20"
+                                    height="20"> Adobe</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container pader mt-3 mb-4"> <!-- mt-5 pt-5-->
+        <div class="row" style="border-bottom: 1px solid #c0c0c0;">
+            <div class="col-md-2 mx-auto mb-3">
+                <button class="btn btn-outline-secondary w-100 btn-custom-rounded">
+                    <img class="filter-img" src="src/img/filtericon.png" width="20" height="20"> Filter
+                </button>
+            </div>
+            <div class="col-md-7 mb-3">
+                <div class="input-group">
+                    <button class="btn btn-outline-secondary" type="button"><i class="fa fa-search"></i></button>
+                    <input type="text" class="form-control" placeholder="Search the creative world at work" id="searchInput" oninput="showSuggestions(this.value)">
+                    <div class="input-group-append btn-custom-rounded">
+                        <button class="btn btn-outline-secondary" type="button" onclick="document.getElementById('imageUpload').click();">
+                            <i class="fa fa-image"></i>
+                            <span class="hide-on-small-screen">Search by Image</span>
+                        </button>
+                        <input type="file" id="imageUpload" accept="image/*" style="display: none;" onchange="handleImageUpload(this)">
+                    </div>
+                </div>
+                <div id="suggestions" class="suggestions-list"></div>
+            </div>
+            <div class="col-md-offset-3 mx-auto mb-3">
+                <select class="btn-custom-rounded form-control" id="sortOptions" onchange="sortImages()">
+                    <option value="recommended">Recommended</option>
+                    <option value="likes">Most Liked</option>
+                    <option value="views">Most Viewed</option>
+                </select>
+            </div>
+        </div>
+        <div class="container mt-1 pt-5">
+            <div class="row" id="imageGallery">
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="thumbnail" data-likes="2969" data-views="8462">
+                        <div class="thumbnail-img">
+                            <img src="src/img/pic1.jpg" alt="Sample Image 1" width="100%" height="200px">
+                        </div>
+
+                        <div class="save-button">
+                            <i class="fa fa-folder-open"></i> Save
+                        </div>
+
+                        <div class="thumbnail-info">
+                            <h4>Naruto & Boruto</h4>
+                            <p>Maapa .Inc<span class="pro-badge">PRO</span></p>
+                            <div class="stats">
+                                <div class="likes">
+                                    <i class="fa fa-thumbs-up"></i> 2969
+                                </div>
+                                <div class="views">
+                                    <i class="fa fa-eye"></i> 8462
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="thumbnail" data-likes="4857" data-views="7024">
+                        <div class="thumbnail-img">
+                            <img src="src/img/pic2.jpg" alt="Thumbnail Image" width="100%">
+                        </div>
+
+                        <div class="save-button">
+                            <i class="fa fa-folder-open"></i> Save
+                        </div>
+
+                        <div class="thumbnail-info">
+                            <h4>CuberPunk 2077 Night Out</h4>
+                            <p>Unreal Devs</p>
+                            <div class="stats">
+                                <div class="likes">
+                                    <i class="fa fa-thumbs-up"></i> 4857
+                                </div>
+                                <div class="views">
+                                    <i class="fa fa-eye"></i> 7024
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="thumbnail" data-likes="1700" data-views="5500">
+                        <div class="thumbnail-img">
+                            <img src="src/img/pic3.jpg" alt="Thumbnail Image" width="100%">
+                        </div>
+
+                        <div class="save-button">
+                            <i class="fa fa-folder-open"></i> Save
+                        </div>
+
+                        <div class="thumbnail-info">
+                            <h4>Vintage Old Street</h4>
+                            <p>Richard Stevens</p>
+                            <div class="stats">
+                                <div class="likes">
+                                    <i class="fa fa-thumbs-up"></i> 1700
+                                </div>
+                                <div class="views">
+                                    <i class="fa fa-eye"></i> 5500
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="thumbnail" data-likes="967" data-views="2583">
+                        <div class="thumbnail-img">
+                            <img src="src/img/pic4.jpg" alt="Thumbnail Image" width="100%">
+                        </div>
+
+                        <div class="save-button">
+                            <i class="fa fa-folder-open"></i> Save
+                        </div>
+
+                        <div class="thumbnail-info">
+                            <h4>Lofi Night Girl Chilling</h4>
+                            <p>Cassy Cage</p>
+                            <div class="stats">
+                                <div class="likes">
+                                    <i class="fa fa-thumbs-up"></i> 967
+                                </div>
+                                <div class="views">
+                                    <i class="fa fa-eye"></i> 2583
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="thumbnail" data-likes="2500" data-views="7000">
+                        <div class="thumbnail-img">
+                            <img src="src/img/pic5.jpg" alt="Thumbnail Image" width="100%">
+                        </div>
+
+                        <div class="save-button">
+                            <i class="fa fa-folder-open"></i> Save
+                        </div>
+
+                        <div class="thumbnail-info">
+                            <h4>Ghost of Tsushima Tree</h4>
+                            <p>Nixxes .Inc</p>
+                            <div class="stats">
+                                <div class="likes">
+                                    <i class="fa fa-thumbs-up"></i> 2500
+                                </div>
+                                <div class="views">
+                                    <i class="fa fa-eye"></i> 7000
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="thumbnail" data-likes="1795" data-views="4912">
+                        <div class="thumbnail-img">
+                            <img src="src/img/pic6.jpg" alt="Thumbnail Image" width="100%">
+                        </div>
+
+                        <div class="save-button">
+                            <i class="fa fa-folder-open"></i> Save
+                        </div>
+
+                        <div class="thumbnail-info">
+                            <h4>Interstellar Black Hole Space</h4>
+                            <p>Warner Bros <span class="pro-badge">PRO</span></p>
+                            <div class="stats">
+                                <div class="likes">
+                                    <i class="fa fa-thumbs-up"></i> 1795
+                                </div>
+                                <div class="views">
+                                    <i class="fa fa-eye"></i> 4912
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="thumbnail" data-likes="3256" data-views="8761">
+                        <div class="thumbnail-img">
+                            <img src="src/img/pic7.jpg" alt="Thumbnail Image" width="100%">
+                        </div>
+
+                        <div class="save-button">
+                            <i class="fa fa-folder-open"></i> Save
+                        </div>
+
+                        <div class="thumbnail-info">
+                            <h4>Sunset Neon City</h4>
+                            <p>Epic .Inc</p>
+                            <div class="stats">
+                                <div class="likes">
+                                    <i class="fa fa-thumbs-up"></i> 3256
+                                </div>
+                                <div class="views">
+                                    <i class="fa fa-eye"></i> 8761
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="thumbnail" data-likes="1453" data-views="3987">
+                        <div class="thumbnail-img">
+                            <img src="src/img/pic8.jpg" alt="Thumbnail Image" width="100%">
+                        </div>
+
+                        <div class="save-button">
+                            <i class="fa fa-folder-open"></i> Save
+                        </div>
+
+                        <div class="thumbnail-info">
+                            <h4>Interstellar Outer Space</h4>
+                            <p>Warner Bros</p>
+                            <div class="stats">
+                                <div class="likes">
+                                    <i class="fa fa-thumbs-up"></i> 1453
+                                </div>
+                                <div class="views">
+                                    <i class="fa fa-eye"></i> 3987
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="thumbnail" data-likes="2764" data-views="7438">
+                        <div class="thumbnail-img">
+                            <img src="src/img/pic9.jpg" alt="Thumbnail Image" width="100%">
+                        </div>
+
+                        <div class="save-button">
+                            <i class="fa fa-folder-open"></i> Save
+                        </div>
+
+                        <div class="thumbnail-info">
+                            <h4>Bullet Train Movie Tokyo City</h4>
+                            <p>Sony Pictures Entertainment<span class="pro-badge">PRO</span></p>
+                            <div class="stats">
+                                <div class="likes">
+                                    <i class="fa fa-thumbs-up"></i> 2764
+                                </div>
+                                <div class="views">
+                                    <i class="fa fa-eye"></i> 7438
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="thumbnail" data-likes="3972" data-views="9803">
+                        <div class="thumbnail-img">
+                            <img src="src/img/pic10.jpg" alt="Thumbnail Image" width="100%">
+                        </div>
+
+                        <div class="save-button">
+                            <i class="fa fa-folder-open"></i> Save
+                        </div>
+
+                        <div class="thumbnail-info">
+                            <h4>Himalayan Mountain Sunset</h4>
+                            <p>Richard Stevens</p>
+                            <div class="stats">
+                                <div class="likes">
+                                    <i class="fa fa-thumbs-up"></i> 3972
+                                </div>
+                                <div class="views">
+                                    <i class="fa fa-eye"></i> 9803
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="thumbnail" data-likes="950" data-views="3000">
+                        <div class="thumbnail-img">
+                            <img src="src/img/pic11.jpg" alt="Thumbnail Image" width="100%">
+                        </div>
+
+                        <div class="save-button">
+                            <i class="fa fa-folder-open"></i> Save
+                        </div>
+
+                        <div class="thumbnail-info">
+                            <h4>Ghost of Tsushima Intro Pic</h4>
+                            <p>Nixxes .Inc</p>
+                            <div class="stats">
+                                <div class="likes">
+                                    <i class="fa fa-thumbs-up"></i> 950
+                                </div>
+                                <div class="views">
+                                    <i class="fa fa-eye"></i> 3000
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="thumbnail" data-likes="1567" data-views="4198">
+                        <div class="thumbnail-img">
+                            <img src="src/img/pic12.jpg" alt="Thumbnail Image" width="100%">
+                        </div>
+
+                        <div class="save-button">
+                            <i class="fa fa-folder-open"></i> Save
+                        </div>
+
+                        <div class="thumbnail-info">
+                            <h4>The Amazing Spider-Man</h4>
+                            <p>Marvel .Inc</p>
+                            <div class="stats">
+                                <div class="likes">
+                                    <i class="fa fa-thumbs-up"></i> 1567
+                                </div>
+                                <div class="views">
+                                    <i class="fa fa-eye"></i> 4198
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="popup-modal" class="modal">
+            <span class="close-btn">&times;</span>
+            <img class="modal-content" id="popup-img">
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="src/script.js"></script>
+
+</body>
+<style>
+    #loader {
+        border: 12px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 12px solid #444444;
+        width: 70px;
+        height: 70px;
+        animation: spin 1s linear infinite;
+    }
+
+    .center {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+    }
+
+    @keyframes spin {
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+</style>
+
+</html>

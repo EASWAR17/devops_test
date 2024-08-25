@@ -1,0 +1,254 @@
+body {
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+}
+
+.pader {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.btn-custom-rounded {
+    border-radius: 20px;
+    /* Adjust as needed */
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+    border-bottom: 1px solid #000;
+
+}
+
+
+
+#suggestions {
+    margin-left: 40px;
+    margin-top: 0px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.pro-button {
+    display: inline-block;
+    padding: 2px 5px;
+    font-size: 10px;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(to right, #00aaff, #0044cc);
+    border-radius: 5px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.suggestions-list {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    width: calc(100% - 70px);
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1;
+}
+
+.suggestion-item {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
+    background-color: #f0f0f0;
+}
+
+.thumbnail {
+    background-color: white;
+    border-radius: 5px;
+    overflow: hidden;
+    transition: transform 0.3s;
+    /*position: relative;*/
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+
+
+}
+
+.thumbnail:hover {
+    transform: translateY(-10px);
+
+}
+
+.save-button {
+    position: absolute;
+    font-size: 10px;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(53, 53, 53, 0.8);
+    color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 20%;
+    padding: 5px;
+    display: none;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.thumbnail:hover .save-button {
+    display: block;
+}
+
+.thumbnail-img {
+    width: 100%;
+    /*height: 200px;*/
+    overflow: hidden;
+}
+
+.thumbnail-img img {
+    width: 100%;
+    height: auto;
+
+    /*max-width: 100%;
+    display: block;*/
+}
+
+.thumbnail-info {
+    padding: 15px;
+}
+
+.thumbnail-info h4 {
+    margin: 10px 0 5px;
+    font-size: 18px;
+}
+
+.thumbnail-info p {
+    margin: 0 0 10px;
+    color: #666;
+    font-size: 14px;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.stats div {
+    display: flex;
+    align-items: center;
+}
+
+
+
+.stats .likes,
+.stats .views {
+    display: flex;
+    align-items: center;
+}
+
+.stats i {
+    margin-right: 5px;
+}
+
+.pro-badge {
+    display: inline-block;
+    padding: 1px 4px;
+    font-size: 10px;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(to right, #00aaff, #0044cc);
+    border-radius: 5px;
+    margin-left: 3px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.filter-img {
+    margin-right: 10px;
+}
+
+@media (max-width: 767px) {
+    .thumbnail-img {
+        height: 150px;
+    }
+
+}
+
+/* Dropdown on hover */
+.navbar-nav .dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu {
+    margin-top: 0;
+    /* Adjust the margin if necessary */
+}
+
+.nav-item.dropdown:hover .dropdown-toggle {
+    background-color: #f8f9fa;
+    /* Optional: Change background color on hover */
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.9);
+    align-items: center;
+    justify-content: space-around;
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+
+}
+
+.close-btn {
+    position: absolute;
+    top: 35px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .hide-on-small-screen {
+        display: none;
+    }
+}
