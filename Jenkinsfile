@@ -40,9 +40,12 @@ pipeline {
 
         stage('Quality Gate') {
             steps {
-                // Wait for SonarQube Quality Gate result
-                timeout(time: 1, unit: 'HOURS') {
-                    waitForQualityGate abortPipeline: true
+                script {
+                    
+                    def qg = waitForQualityGate()
+                    if (qg.status != 'OK') {
+                        error "SonarQube Quality Gate failed: ${qg.status}"
+                    }
                 }
             }
         }
