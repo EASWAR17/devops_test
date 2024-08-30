@@ -1,4 +1,3 @@
-
 pipeline {
     agent any
 
@@ -6,9 +5,11 @@ pipeline {
         DEPLOY_SERVER = '127.0.0.1'
         DEPLOY_PATH = '/var/www/behance'
     }
-     // triggers {
-     //     pollSCM('H/2 * * * *') // Polls every 5 minutes
-     // }
+    
+    // Uncomment this if you want to enable SCM polling
+    // triggers {
+    //     pollSCM('H/2 * * * *') // Polls every 5 minutes
+    // }
 
     stages {
         stage('Checkout') {
@@ -20,54 +21,47 @@ pipeline {
             }
         }
 
-//         stage('SonarQube Analysis') {
-//             steps {
-//                 script {
-//                     // Define the scannerHome path explicitly
-//                     def scannerHome = tool name: 'sonarserver', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+        // Uncomment and configure SonarQube analysis if needed
+        // stage('SonarQube Analysis') {
+        //     steps {
+        //         script {
+        //             // Define the scannerHome path explicitly
+        //             def scannerHome = tool name: 'sonarserver', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
                     
-//                     // Run SonarQube analysis
-//                     withSonarQubeEnv('sonarquber') {
-//                         bat "${scannerHome}/bin/sonar-scanner.bat " +
-//                             "-Dsonar.projectKey=test " +
-//                             "-Dsonar.sources=. " +
-//                             "-Dsonar.language=js " +
-//                             "-Dsonar.sourceEncoding=UTF-8"
-//                     }
-//                 }
-//             }
-//         }
+        //             // Run SonarQube analysis
+        //             withSonarQubeEnv('sonarquber') {
+        //                 sh "${scannerHome}/bin/sonar-scanner " +
+        //                     "-Dsonar.projectKey=test " +
+        //                     "-Dsonar.sources=. " +
+        //                     "-Dsonar.language=js " +
+        //                     "-Dsonar.sourceEncoding=UTF-8"
+        //             }
+        //         }
+        //     }
+        // }
 
-//         stage('Quality Gate') {
-//             steps {
-//                 script {
-                    
-//                     // def qg = waitForQualityGate()
-//                     // if (qg.status != 'OK') {
-//                     //     error "SonarQube Quality Gate failed: ${qg.status}"
-//                     //                 }
-//                     sleep(60)
-//                     timeout(time: 1, unit: 'MINUTES') {
-//                     def qg = waitForQualityGate()
-//                     print "Finished waiting"
-//                     if (qg.status != 'OK') {
-//                         error "Pipeline aborted due to quality gate failure: ${qg.status}"
-//                     }
-// }  
-//                 }
-//             }
-//         }
-
-        
+        // Uncomment and configure Quality Gate if needed
+        // stage('Quality Gate') {
+        //     steps {
+        //         script {
+        //             timeout(time: 1, unit: 'MINUTES') {
+        //                 def qg = waitForQualityGate()
+        //                 if (qg.status != 'OK') {
+        //                     error "Pipeline aborted due to quality gate failure: ${qg.status}"
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
 
         stage('Deploy') {
             steps {
                 script {
                     // Remove the existing files
-                    bat "del /S /Q ${DEPLOY_PATH}\\*"
+                    sh "rm -rf ${DEPLOY_PATH}/*"
                     
                     // Copy the new files from the repository to the deployment folder
-                    bat "xcopy /E /I /Y ${env.WORKSPACE} ${DEPLOY_PATH}"
+                    sh "cp -r ${env.WORKSPACE}/* ${DEPLOY_PATH}/"
                 }
             }
         }
