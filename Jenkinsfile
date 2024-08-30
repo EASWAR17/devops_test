@@ -4,7 +4,7 @@ pipeline {
 
     environment {
         DEPLOY_SERVER = '127.0.0.1'
-        DEPLOY_PATH = 'C:\\inetpub\\wwwroot'
+        DEPLOY_PATH = '/var/www/behance'
     }
      // triggers {
      //     pollSCM('H/2 * * * *') // Polls every 5 minutes
