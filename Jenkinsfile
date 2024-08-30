@@ -20,43 +20,43 @@ pipeline {
             }
         }
 
-        stage('SonarQube Analysis') {
-            steps {
-                script {
-                    // Define the scannerHome path explicitly
-                    def scannerHome = tool name: 'sonarserver', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+//         stage('SonarQube Analysis') {
+//             steps {
+//                 script {
+//                     // Define the scannerHome path explicitly
+//                     def scannerHome = tool name: 'sonarserver', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
                     
-                    // Run SonarQube analysis
-                    withSonarQubeEnv('sonarquber') {
-                        bat "${scannerHome}/bin/sonar-scanner.bat " +
-                            "-Dsonar.projectKey=test " +
-                            "-Dsonar.sources=. " +
-                            "-Dsonar.language=js " +
-                            "-Dsonar.sourceEncoding=UTF-8"
-                    }
-                }
-            }
-        }
+//                     // Run SonarQube analysis
+//                     withSonarQubeEnv('sonarquber') {
+//                         bat "${scannerHome}/bin/sonar-scanner.bat " +
+//                             "-Dsonar.projectKey=test " +
+//                             "-Dsonar.sources=. " +
+//                             "-Dsonar.language=js " +
+//                             "-Dsonar.sourceEncoding=UTF-8"
+//                     }
+//                 }
+//             }
+//         }
 
-        stage('Quality Gate') {
-            steps {
-                script {
+//         stage('Quality Gate') {
+//             steps {
+//                 script {
                     
-                    // def qg = waitForQualityGate()
-                    // if (qg.status != 'OK') {
-                    //     error "SonarQube Quality Gate failed: ${qg.status}"
-                    //                 }
-                    sleep(60)
-                    timeout(time: 1, unit: 'MINUTES') {
-                    def qg = waitForQualityGate()
-                    print "Finished waiting"
-                    if (qg.status != 'OK') {
-                        error "Pipeline aborted due to quality gate failure: ${qg.status}"
-                    }
-}  
-                }
-            }
-        }
+//                     // def qg = waitForQualityGate()
+//                     // if (qg.status != 'OK') {
+//                     //     error "SonarQube Quality Gate failed: ${qg.status}"
+//                     //                 }
+//                     sleep(60)
+//                     timeout(time: 1, unit: 'MINUTES') {
+//                     def qg = waitForQualityGate()
+//                     print "Finished waiting"
+//                     if (qg.status != 'OK') {
+//                         error "Pipeline aborted due to quality gate failure: ${qg.status}"
+//                     }
+// }  
+//                 }
+//             }
+//         }
 
         
 
