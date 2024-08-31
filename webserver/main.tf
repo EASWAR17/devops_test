@@ -1,6 +1,4 @@
-# Assuming you want to install Apache and deploy an existing file
-
-# Define a resource to ensure the web server is set up
+# Define a resource to install and configure Apache
 resource "null_resource" "apache_setup" {
   provisioner "local-exec" {
     command = <<EOT
@@ -12,8 +10,8 @@ resource "null_resource" "apache_setup" {
   }
 
   provisioner "file" {
-    source      = "/var/www/behance/index.html"     # Path to the existing HTML file on the local machine
-    destination = "/var/www/html/index.html"       # Path where the file should be placed on the web server
+    source      = "path/to/your/local/index.html"  # Local path to your HTML file (relative to your Terraform workspace)
+    destination = "/var/www/html/index.html"        # Path on the web server where the HTML file should be placed
   }
 
   triggers = {
