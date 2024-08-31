@@ -10,7 +10,7 @@ resource "null_resource" "apache_setup" {
   }
 
   provisioner "file" {
-    source      = "path/to/your/local/index.html"  # Local path to your HTML file (relative to your Terraform workspace)
+    source      = "/var/www/behance/index.html"  # Local path to your HTML file (relative to your Terraform workspace)
     destination = "/var/www/html/index.html"        # Path on the web server where the HTML file should be placed
   }
 
