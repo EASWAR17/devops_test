@@ -3,13 +3,8 @@ pipeline {
 
     environment {
         DEPLOY_SERVER = '127.0.0.1'
-        DEPLOY_PATH = '/var/www/behance'
+        DEPLOY_PATH = '/var/www/html'  // Update to match the deployment path for your static web app
     }
-    
-    // Uncomment this if you want to enable SCM polling
-    // triggers {
-    //     pollSCM('H/2 * * * *') // Polls every 5 minutes
-    // }
 
     stages {
         stage('Checkout') {
@@ -21,14 +16,42 @@ pipeline {
             }
         }
 
-        // Uncomment and configure SonarQube analysis if needed
+        stage('Terraform Init') {
+            steps {
+                script {
+                    sh 'terraform init'
+                }
+            }
+        }
+
+        stage('Terraform Apply') {
+            steps {
+                script {
+                    sh 'terraform apply -auto-approve'
+                }
+            }
+        }
+
+        stage('Deploy Static Files') {
+            steps {
+                script {
+                    // Clean the deployment directory
+                    sh "ssh ${DEPLOY_SERVER} 'sudo rm -rf ${DEPLOY_PATH}/*'"
+                    
+                    // Copy the static files from the Jenkins workspace to the deployment directory
+                    sh "scp -r ${env.WORKSPACE}/* ${DEPLOY_SERVER}:${DEPLOY_PATH}/"
+                    
+                    // Restart Apache to apply the new content
+                    sh "ssh ${DEPLOY_SERVER} 'sudo systemctl restart apache2'"
+                }
+            }
+        }
+
+        // Optional: Uncomment if you want to perform SonarQube analysis
         // stage('SonarQube Analysis') {
         //     steps {
         //         script {
-        //             // Define the scannerHome path explicitly
         //             def scannerHome = tool name: 'sonarserver', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
-                    
-        //             // Run SonarQube analysis
         //             withSonarQubeEnv('sonarquber') {
         //                 sh "${scannerHome}/bin/sonar-scanner " +
         //                     "-Dsonar.projectKey=test " +
@@ -40,7 +63,7 @@ pipeline {
         //     }
         // }
 
-        // Uncomment and configure Quality Gate if needed
+        // Optional: Uncomment if you want to check SonarQube Quality Gate
         // stage('Quality Gate') {
         //     steps {
         //         script {
@@ -53,17 +76,14 @@ pipeline {
         //         }
         //     }
         // }
+    }
 
-        stage('Deploy') {
-            steps {
-                script {
-                    // Remove the existing files
-                    sh "rm -rf ${DEPLOY_PATH}/*"
-                    
-                    // Copy the new files from the repository to the deployment folder
-                    sh "cp -r ${env.WORKSPACE}/* ${DEPLOY_PATH}/"
-                }
-            }
+    post {
+        success {
+            echo 'Deployment successful!'
+        }
+        failure {
+            echo 'Deployment failed!'
         }
     }
 }
