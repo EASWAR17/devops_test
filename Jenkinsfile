@@ -62,7 +62,7 @@ pipeline {
                         "-Dsonar.projectKey=test1 " +
                         "-Dsonar.sources=. " +
                         "-Dsonar.host.url=http://192.168.66.137:9000 " +
-                        "-Dsonar.token=sqp_26146e10b2674104f87d2ebc27700afa119273cc " +
+                        "-Dsonar.login=sqp_26146e10b2674104f87d2ebc27700afa119273cc " +
                         "-Dsonar.sourceEncoding=UTF-8 -X"  // Added -X for detailed debug logs
                 }
             }
