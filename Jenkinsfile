@@ -43,9 +43,9 @@ pipeline {
                     def scannerHome = tool name: 'sonarserver', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
                     
                     // Run SonarQube analysis
-                    withSonarQubeEnv('sonarquber') {
+                    withSonarQubeEnv('sonarqube') {
                         sh "${scannerHome}/bin/sonar-scanner " +
-                            "-Dsonar.projectKey=test " +
+                            "-Dsonar.projectKey=poc" +
                             "-Dsonar.sources=. " +
                             "-Dsonar.language=js " +
                             "-Dsonar.sourceEncoding=UTF-8"
