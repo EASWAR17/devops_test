@@ -6,6 +6,10 @@ pipeline {
         DEPLOY_PATH = '/var/www/behance' // Deployment path for Apache
     }
 
+     triggers {
+         pollSCM('H/5 * * * *') // Polls every 5 minutes
+    }
+
     stages {
         stage('Checkout') {
             steps {
