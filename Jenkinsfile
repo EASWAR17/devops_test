@@ -54,10 +54,18 @@ pipeline {
         //     }
         // }
         stage('SonarQube Analysis') {
-            def scannerHome = tool name: 'sonarserver';
-            withSonarQubeEnv() {
-                sh "${scannerHome}/bin/sonar-scanner"
-    }
+            steps {
+                script {
+                    def scannerHome = tool name: 'sonarserver', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+
+                    sh "${scannerHome}/bin/sonar-scanner " +
+                        "-Dsonar.projectKey=test1 " +
+                        "-Dsonar.sources=. " +
+                        "-Dsonar.host.url=http://192.168.66.137:9000 " +
+                        "-Dsonar.token=sqp_26146e10b2674104f87d2ebc27700afa119273cc " 
+                        // "-Dsonar.sourceEncoding=UTF-8 -X"  // Added -X for detailed debug logs
+                }
+            }
         }
 
 
