@@ -45,10 +45,11 @@ pipeline {
                     // Run SonarQube analysis
                     withSonarQubeEnv('sonarqube') {
                         sh "${scannerHome}/bin/sonar-scanner " +
-                            "-Dsonar.projectKey=poc" +
+                            "-Dsonar.projectKey=poc " +
                             "-Dsonar.sources=. " +
                             "-Dsonar.language=js " +
-                            "-Dsonar.sourceEncoding=UTF-8"
+                            "-Dsonar.sourceEncoding=UTF-8" +
+                            "-Dsonar.login=${token}"
                     }
                 }
             }
