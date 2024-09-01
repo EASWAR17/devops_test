@@ -1,3 +1,3 @@
 output "web_root" {
-  value = "/var/www/html"
+  value = "/var/www/behance/index.html"
 }

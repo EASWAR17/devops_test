@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DEPLOY_SERVER = '127.0.0.1'  // Local server address
-        DEPLOY_PATH = '/var/www/html' // Deployment path for Apache
+        DEPLOY_PATH = '/var/www/behance' // Deployment path for Apache
     }
 
     stages {
