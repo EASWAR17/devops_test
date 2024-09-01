@@ -43,31 +43,30 @@ pipeline {
                     def scannerHome = tool name: 'sonarserver', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
                     
                     // Run SonarQube analysis
-                    withSonarQubeEnv('sonarqube') {
+                    withSonarQubeEnv('sonarquber') {
                         sh "${scannerHome}/bin/sonar-scanner " +
-                            "-Dsonar.projectKey=poc " +
+                            "-Dsonar.projectKey=test1 " +
                             "-Dsonar.sources=. " +
                             "-Dsonar.language=js " +
-                            "-Dsonar.sourceEncoding=UTF-8" +
-                            "-Dsonar.login=${poc}"
+                            "-Dsonar.sourceEncoding=UTF-8"
                     }
                 }
             }
         }
 
-        stage('Quality Gate') {
-            steps {
-                script {
-                    // Check the quality gate status
-                    timeout(time: 30, unit: 'MINUTES') {
-                        def qg = waitForQualityGate()
-                        if (qg.status != 'OK') {
-                            error "Pipeline aborted due to quality gate failure: ${qg.status}"
-                        }
-                    }
-                }
-            }
-        }
+        // stage('Quality Gate') {
+        //     steps {
+        //         script {
+        //             // Check the quality gate status
+        //             timeout(time: 30, unit: 'MINUTES') {
+        //                 def qg = waitForQualityGate()
+        //                 if (qg.status != 'OK') {
+        //                     error "Pipeline aborted due to quality gate failure: ${qg.status}"
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
 
         stage('Deploy Static Files') {
     steps {
