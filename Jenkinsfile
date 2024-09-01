@@ -49,7 +49,7 @@ pipeline {
                             "-Dsonar.sources=. " +
                             "-Dsonar.language=js " +
                             "-Dsonar.sourceEncoding=UTF-8" +
-                            "-Dsonar.login=${token}"
+                            "-Dsonar.login=${poc}"
                     }
                 }
             }
