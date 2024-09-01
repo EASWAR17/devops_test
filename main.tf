@@ -1,3 +1,3 @@
 module "webserver" {
-  source = "webserver"
+  source = "./webserver"
 }
