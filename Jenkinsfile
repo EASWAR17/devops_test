@@ -35,18 +35,18 @@ pipeline {
         stage('Deploy Static Files') {
     steps {
         script {
-            // Add the host key to known_hosts to avoid verification issues
-            sh "ssh-keyscan -H ${DEPLOY_SERVER} >> ~/.ssh/known_hosts"
+                    // Add the host key to known_hosts to avoid verification issues
+                    sh "ssh-keyscan -H ${DEPLOY_SERVER} >> ~/.ssh/known_hosts"
 
-            // Clean the deployment directory
-            sh "ssh ${DEPLOY_SERVER} 'sudo rm -rf ${DEPLOY_PATH}/*'"
+                    // Clean the deployment directory
+                    sh "ssh -o StrictHostKeyChecking=no ${DEPLOY_SERVER} 'sudo rm -rf ${DEPLOY_PATH}/*'"
 
-            // Copy the static files from the Jenkins workspace to the deployment directory
-            sh "scp -r ${env.WORKSPACE}/* ${DEPLOY_SERVER}:${DEPLOY_PATH}/"
+                    // Copy the static files from the Jenkins workspace to the deployment directory
+                    sh "scp -o StrictHostKeyChecking=no -r ${env.WORKSPACE}/* ${DEPLOY_SERVER}:${DEPLOY_PATH}/"
 
-            // Restart Apache to apply the new content
-            sh "ssh ${DEPLOY_SERVER} 'sudo systemctl restart apache2'"
-        }
+                    // Restart Apache to apply the new content
+                    sh "ssh -o StrictHostKeyChecking=no ${DEPLOY_SERVER} 'sudo systemctl restart apache2'"
+                }
     }
 }
 
