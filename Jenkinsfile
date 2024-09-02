@@ -47,7 +47,7 @@ pipeline {
         //                 sh "${scannerHome}/bin/sonar-scanner " +
         //                     "-Dsonar.projectKey=test1 " +
         //                     "-Dsonar.sources=. " +
-        //                     "-Dsonar.language=js " +
+        //                     "-Dsonar.language=js,html,css " +
         //                     "-Dsonar.sourceEncoding=UTF-8"
         //             }
         //         }
