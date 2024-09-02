@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        DEPLOY_SERVER = '127.0.0.1'  // Local server address
-        DEPLOY_PATH = '/var/www/behance' // Deployment path for Apache
+        DEPLOY_SERVER = '127.0.0.1'  
+        DEPLOY_PATH = '/var/www/behance'
         SONARQUBE_URL = 'http://192.168.66.137:9000'
         SONARQUBE_TOKEN = 'squ_1189152129eed4130c75254ca90a97975fc86637'
         PROJECT_KEY = 'test1' 
@@ -39,23 +39,7 @@ pipeline {
         //     }
         // }
 
-        // stage('SonarQube Analysis') {
-        //     steps {
-        //         script {
-        //             // Define the scannerHome path explicitly
-        //             def scannerHome = tool name: 'sonarserver', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
-                    
-        //             // Run SonarQube analysis
-        //             withSonarQubeEnv('sonarquber') {
-        //                 sh "${scannerHome}/bin/sonar-scanner " +
-        //                     "-Dsonar.projectKey=test1 " +
-        //                     "-Dsonar.sources=. " +
-        //                     "-Dsonar.language=js,html,css " +
-        //                     "-Dsonar.sourceEncoding=UTF-8"
-        //             }
-        //         }
-        //     }
-        // }
+        
         stage('SonarQube Analysis') {
     steps {
         script {
@@ -70,24 +54,6 @@ pipeline {
         }
     }
 }
-
-
-
-
-
-        // stage('Quality Gate') {
-        //     steps {
-        //         script {
-        //             // Check the quality gate status
-        //             timeout(time: 30, unit: 'MINUTES') {
-        //                 def qg = waitForQualityGate()
-        //                 if (qg.status != 'OK') {
-        //                     error "Pipeline aborted due to quality gate failure: ${qg.status}"
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
 
         stage('Quality Gate') {
             steps {
