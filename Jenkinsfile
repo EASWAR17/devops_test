@@ -71,8 +71,8 @@ pipeline {
         }
 
         stage('Deploy Static Files') {
-    steps {
-        script {
+            steps {
+                script {
                     // Add the host key to known_hosts to avoid verification issues
                     sh "ssh-keyscan -H ${DEPLOY_SERVER} >> ~/.ssh/known_hosts"
 
@@ -85,8 +85,8 @@ pipeline {
                     // Restart Apache to apply the new content
                     sh "ssh -o StrictHostKeyChecking=no ${DEPLOY_SERVER} 'sudo systemctl restart apache2'"
                 }
-    }
-}
+            }
+        }
 
     }
 
