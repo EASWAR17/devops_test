@@ -4,6 +4,9 @@ pipeline {
     environment {
         DEPLOY_SERVER = '127.0.0.1'  // Local server address
         DEPLOY_PATH = '/var/www/behance' // Deployment path for Apache
+        SONARQUBE_URL = 'http://192.168.66.137:9000'
+        SONARQUBE_TOKEN = 'squ_1189152129eed4130c75254ca90a97975fc86637'
+        PROJECT_KEY = 'test1' 
     }
 
      triggers {
@@ -90,9 +93,12 @@ pipeline {
             steps {
                 script {
                     // Wait for the SonarQube analysis report and check the Quality Gate status
-                    def qg = waitForQualityGate()
-                    if (qg.status != 'OK') {
-                        error "Quality gate check failed: ${qg.status}"
+                    def response = sh(script: "curl -u ${SONARQUBE_TOKEN}: \"${SONARQUBE_URL}/api/qualitygates/project_status?projectKey=${PROJECT_KEY}\"", returnStdout: true).trim()
+                    def json = readJSON(text: response)
+                    if (json.projectStatus.status != 'OK') {
+                        error "Quality gate failed: ${json.projectStatus.status}"
+                    } else {
+                        echo "Quality gate passed."
                     }
                 }
             }
