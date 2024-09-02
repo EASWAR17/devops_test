@@ -23,6 +23,7 @@ resource "null_resource" "install_tools" {
         sudo systemctl enable jenkins
       else
         echo "Jenkins is already installed."
+      fi
 
       if [ ! -d /opt/sonarqube ]; then
         echo "SonarQube not found. Installing SonarQube..."
@@ -60,6 +61,7 @@ resource "null_resource" "install_tools" {
         sudo systemctl enable sonarqube
       else
         echo "SonarQube is already installed."
+      fi
     EOT
 
     
