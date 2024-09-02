@@ -50,7 +50,6 @@ pipeline {
                 "-Dsonar.sources=. " +
                 "-Dsonar.host.url=http://192.168.66.137:9000 " +
                 "-Dsonar.token=squ_1189152129eed4130c75254ca90a97975fc86637"
-                // "-Dsonar.sourceEncoding=UTF-8 -X"  // Added -X for detailed debug logs
         }
     }
 }
