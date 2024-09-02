@@ -86,6 +86,18 @@ pipeline {
         //     }
         // }
 
+        stage('Quality Gate') {
+            steps {
+                script {
+                    // Wait for the SonarQube analysis report and check the Quality Gate status
+                    def qg = waitForQualityGate()
+                    if (qg.status != 'OK') {
+                        error "Quality gate check failed: ${qg.status}"
+                    }
+                }
+            }
+        }
+
         stage('Deploy Static Files') {
     steps {
         script {
