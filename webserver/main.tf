@@ -1,70 +1,45 @@
 resource "null_resource" "install_tools" {
   provisioner "local-exec" {
-    command = <<EOT
-      sudo apt-get update
-      sudo apt-get install -y apache2
-      sudo systemctl start apache2
-      sudo systemctl enable apache2
-
-      sudo apt-get update
-
-      # Check if Jenkins is already installed
-      if ! dpkg -l | grep -q jenkins; then
-        echo "Jenkins not found. Installing Jenkins..."
-
-        # Install Jenkins
-        sudo apt-get install -y openjdk-11-jdk
-        wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
-        sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary > /etc/apt/sources.list.d/jenkins.list'
-        sudo apt-get update
-        sudo apt-get install -y jenkins=${var.jenkins_version}
-        sudo systemctl start jenkins
-        sudo systemctl enable jenkins
-      else
-        echo "Jenkins is already installed."
-      fi
-
-      if [ ! -d /opt/sonarqube ]; then
-        echo "SonarQube not found. Installing SonarQube..."
-
-        # Install SonarQube
-        sudo apt-get install -y wget unzip
-        wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-${var.sonarqube_version}.zip
-        unzip sonarqube-${var.sonarqube_version}.zip
-        sudo mv sonarqube-${var.sonarqube_version} /opt/sonarqube
-        sudo useradd --system --home /opt/sonarqube sonarqube
-        sudo chown -R sonarqube: /opt/sonarqube
-
-        # Configure SonarQube
-        sudo tee /etc/systemd/system/sonarqube.service <<EOF
-[Unit]
-Description=SonarQube service
-After=syslog.target network.target
-
-[Service]
-Type=simple
-User=sonarqube
-Group=sonarqube
-ExecStart=/opt/sonarqube/bin/linux-x86-64/sonar.sh start
-ExecStop=/opt/sonarqube/bin/linux-x86-64/sonar.sh stop
-Restart=on-failure
-LimitNOFILE=65536
-
-[Install]
-WantedBy=multi-user.target
-EOF
-
-        # Start and enable SonarQube
-        sudo systemctl daemon-reload
-        sudo systemctl start sonarqube
-        sudo systemctl enable sonarqube
-      else
-        echo "SonarQube is already installed."
-      fi
-    EOT
-  }
-
-  triggers = {
-    always_run = "${timestamp()}"
+    command = <<-EOF
+      # Install SonarQube
+      wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-10.5.1.90531.zip -O /opt/sonarqube.zip
+      sudo apt-get install -y zip
+      unzip /opt/sonarqube.zip -d /opt/
+      sudo mv /opt/sonarqube-10.5.1.90531 /opt/sonarqube
+      sudo chown -R ubuntu:ubuntu /opt/sonarqube
+      
+      # Create and configure SonarQube systemd service
+      sudo tee /etc/systemd/system/sonarqube.service > /dev/null <<EOL
+      [Unit]
+      Description=SonarQube service
+      After=network.target
+      
+      [Service]
+      Type=forking
+      User=ubuntu
+      Group=ubuntu
+      ExecStart=/opt/sonarqube/bin/linux-x86-64/sonar.sh start
+      ExecStop=/opt/sonarqube/bin/linux-x86-64/sonar.sh stop
+      Restart=on-failure
+      
+      [Install]
+      WantedBy=multi-user.target
+      EOL
+      
+      sudo systemctl daemon-reload
+      sudo systemctl start sonarqube
+      sudo systemctl enable sonarqube
+      
+      # Install SonarScanner
+      wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-6.1.0.4477-linux-x64.zip -O /opt/sonar-scanner.zip
+      unzip /opt/sonar-scanner.zip -d /opt
+      echo "export PATH=\$PATH:/opt/sonar-scanner-6.1.0.4477-linux-x64/bin" >> /home/ubuntu/.bashrc
+      echo "export SONAR_SCANNER_HOME=/opt/sonar-scanner-6.1.0.4477-linux-x64" >> /home/ubuntu/.bashrc
+      source /home/ubuntu/.bashrc
+      
+      # Clean up
+      rm /opt/sonar-scanner.zip
+      rm /opt/sonarqube.zip
+      EOF
   }
 }
