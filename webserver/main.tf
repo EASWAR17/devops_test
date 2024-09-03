@@ -1,4 +1,3 @@
-# Define a resource to install and configure Apache
 resource "null_resource" "install_tools" {
   provisioner "local-exec" {
     command = <<EOT
@@ -38,22 +37,22 @@ resource "null_resource" "install_tools" {
 
         # Configure SonarQube
         sudo tee /etc/systemd/system/sonarqube.service <<EOF
-        [Unit]
-        Description=SonarQube service
-        After=syslog.target network.target
+[Unit]
+Description=SonarQube service
+After=syslog.target network.target
 
-        [Service]
-        Type=simple
-        User=sonarqube
-        Group=sonarqube
-        ExecStart=/opt/sonarqube/bin/linux-x86-64/sonar.sh start
-        ExecStop=/opt/sonarqube/bin/linux-x86-64/sonar.sh stop
-        Restart=on-failure
-        LimitNOFILE=65536
+[Service]
+Type=simple
+User=sonarqube
+Group=sonarqube
+ExecStart=/opt/sonarqube/bin/linux-x86-64/sonar.sh start
+ExecStop=/opt/sonarqube/bin/linux-x86-64/sonar.sh stop
+Restart=on-failure
+LimitNOFILE=65536
 
-        [Install]
-        WantedBy=multi-user.target
-        EOF
+[Install]
+WantedBy=multi-user.target
+EOF
 
         # Start and enable SonarQube
         sudo systemctl daemon-reload
@@ -63,10 +62,7 @@ resource "null_resource" "install_tools" {
         echo "SonarQube is already installed."
       fi
     EOT
-
-    
   }
-
 
   triggers = {
     always_run = "${timestamp()}"
