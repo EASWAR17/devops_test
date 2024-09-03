@@ -1,6 +1,37 @@
 resource "null_resource" "install_tools" {
   provisioner "local-exec" {
     command = <<-EOF
+
+      #apache server
+      sudo apt-get update
+      sudo apt-get install -y apache2
+      sudo systemctl start apache2
+      sudo systemctl enable apache2
+
+      #jenkins
+      # Update package lists
+      sudo apt-get update
+
+      # Install prerequisites
+      sudo apt-get install -y wget gnupg
+
+      # Add Jenkins repository key
+      wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
+
+      # Add Jenkins repository
+      sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+
+      # Update package lists again after adding the new repository
+      sudo apt-get update
+
+      # Install Jenkins
+      sudo apt-get install -y jenkins=${var.jenkins_version}
+
+      # Enable and start Jenkins service
+      sudo systemctl enable jenkins
+      sudo systemctl start jenkins
+
+      sudo apt-get update
       # Install SonarQube
       wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-10.5.1.90531.zip -O /opt/sonarqube.zip
       sudo apt-get install -y zip
