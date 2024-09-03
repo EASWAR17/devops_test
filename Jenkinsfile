@@ -23,23 +23,22 @@ pipeline {
             }
         }
 
-        stage('Terraform Init') {
-            steps {
-                script {
-                    sh 'terraform init'
-                }
-            }
-        }
+        // stage('Terraform Init') {
+        //     steps {
+        //         script {
+        //             sh 'terraform init'
+        //         }
+        //     }
+        // }
 
-        stage('Terraform Apply') {
-            steps {
-                script {
-                    sh 'terraform apply -auto-approve'
-                }
-            }
-        }
+        // stage('Terraform Apply') {
+        //     steps {
+        //         script {
+        //             sh 'terraform apply -auto-approve'
+        //         }
+        //     }
+        // }
 
-        
         stage('SonarQube Analysis') {
     steps {
         script {
